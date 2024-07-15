@@ -1,6 +1,28 @@
 import React, { useState } from 'react'
 // import { useHistory } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+const fakeData = {
+    code: 200,
+    result: {
+        token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNzIxMDY1NTkwLCJqdGkiOiIyZWIxZWNlZC1hNDUxLTQyOGQtOGRjMy04ZTljMDljZjIzZjQiLCJuYmYiOjE3MjEwNjU1OTAsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOnsidXNlcl9pZCI6IjIyNzIxNDgxIiwidXNlcl9yb2xlIjoic3R1ZGVudCIsImlzX3N1cGVydXNlciI6ZmFsc2V9LCJleHAiOjE3MjE2NzAzOTB9.4syI2ESDiWdtbOyOG_CugbHyybtDuHrNNwQn6PDHNbo',
+        user_id: '22721481',
+        name: '叶文斌',
+        role: 'student',
+        menu: [],
+    },
+    message: '操作成功！',
+}
+// function getFakeToken() {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve
+//         }, 1000)
+//     })
+// }
+// async function handleLogin() {
+//     const token = await getFakeToken()
+//     return token
+// }
 function LoginForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -14,7 +36,25 @@ function LoginForm() {
     }
     function handleLogin() {
         // 登录成功后跳转到活动列表页面
-        navigate('/activityList', { state: { username, password } })
+        fetch('http://localhost/api/auth/login', {
+            method: 'POST',
+            body: JSON.stringify({ username, password }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => fakeData) //response.json())
+            // .then(data => {
+            //     // handle the response data
+            //     // console.log('token', data)
+            //     // navigate('/activityList', { state: { username, password } })
+            // })
+            .catch(error => {
+                // handle the error
+                console.log(error)
+
+                navigate('/activityList', { state: fakeData.result })
+            })
     }
     return (
         <div
