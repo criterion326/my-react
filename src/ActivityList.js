@@ -11,9 +11,10 @@
 
 // export default ActivityList
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useTable, useSortBy } from 'react-table'
+let [data, setData] = useState([])
 // props 是一个对象，包含了从父组件传递过来的数据
 function Greeting(props) {
     return <h1>你好, {props.name}!</h1>
@@ -98,25 +99,24 @@ const columns = [
         Header: '操作',
     },
 ]
-
-let data = []
-fetch('http://localhost:3000/activities') // 从json文件中读取数据
-    .then(response => response.json())
-    .then(data2 => {
-        console.log('read json', data2)
-        data = data2.map(item => {
-            return {
-                id: item.id,
-                activityTitle: item.activityTitle,
-                activityStartTime: item.activityStartTime,
-                activityEndTime: item.activityEndTime,
-                selectPublisher: item.selectPublisher,
-                activityStatus: item.activityStatus,
-                applyEndTime: item.applyEndTime,
-            }
-        })
-    })
-console.log('data', data)
+//     fetch('P:Data/react/my-react/public/activities.json') // 从本地资源文件中读取数据
+//         .then(response => response.json())
+//         .then(data2 => {
+//             console.log('read json', data2)
+//             data = data2.map(item => {
+//                 return {
+//                     id: item.id,
+//                     activityTitle: item.activityTitle,
+//                     activityStartTime: item.activityStartTime,
+//                     activityEndTime: item.activityEndTime,
+//                     selectPublisher: item.selectPublisher,
+//                     activityStatus: item.activityStatus,
+//                     applyEndTime: item.applyDeadline,
+//                 }
+//             })
+//             setData(data)
+//         })
+// }, [])
 function ActivityList() {
     const location = useLocation()
     const res = location.state || {}
