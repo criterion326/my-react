@@ -15,7 +15,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
 import LoginForm from './Login'
-import ActivityList from './ActivityList'
+import ActivityList from './components/ActivityList'
+import AuditPage from './components/AuditPage'
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                 <Routes>
                     <Route path="/login" element={<LoginForm />}></Route>
                     <Route path="/activityList" element={<ActivityList />}></Route>
+                    <Route path="/audit/:id" element={<AuditPage />} />
                 </Routes>
             </div>
         </Router>

@@ -1,0 +1,51 @@
+.table-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 2%;
+}
+
+.header-container h1,
+.header-container h1 {
+  margin: 0 10px;
+}
