@@ -36,24 +36,27 @@ function LoginForm() {
     }
     function handleLogin() {
         // 登录成功后跳转到活动列表页面
-        fetch('http://localhost/api/auth/login', {
+        fetch('http://localhost:3000/login', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: {
                 'Content-Type': 'application/json',
             },
         })
-            .then(response => fakeData) //response.json())
+            // .then(response => fakeData) //response.json())
             // .then(data => {
             //     // handle the response data
             //     // console.log('token', data)
             //     // navigate('/activityList', { state: { username, password } })
             // })
+            .then(data => {
+                // handle the response data
+                console.log('token', data)
+                navigate('/activityList', { state: data })
+            })
             .catch(error => {
                 // handle the error
                 console.log(error)
-
-                navigate('/activityList', { state: fakeData.result })
             })
     }
     return (

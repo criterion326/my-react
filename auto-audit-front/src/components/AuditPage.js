@@ -18,7 +18,7 @@ function AuditPage() {
             setIsLoading(true)
             setUploadStatus('上传中')
             try {
-                const response = await fetch('/api/upload', {
+                const response = await fetch('http://localhost:3000/upload', {
                     method: 'POST',
                     body: formData,
                 })
