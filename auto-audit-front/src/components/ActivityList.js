@@ -164,8 +164,9 @@ function ActivityList() {
     const location = useLocation()
     const navigate = useNavigate()
     const res = location.state || {}
+    console.log('ActivityList', res)
     const { name: username, token } = res
-
+    console.log(username)
     const [data, setData] = useState([])
 
     useEffect(() => {

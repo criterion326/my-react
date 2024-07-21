@@ -71,9 +71,10 @@ app.post('/login', async (req, res) => {
             id: username,
             password: password,
         })
-        console.log(response.data)
+        // console.log(response.data)
         const { token } = response.data.result
-        res.json({ token })
+        // console.log(token)
+        res.json({ success: true, code: 0, token: token })
     } catch (error) {
         console.error('登录错误:', error.response ? error.response.data : error.message)
         res.status(500).json({

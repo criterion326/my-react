@@ -43,15 +43,11 @@ function LoginForm() {
                 'Content-Type': 'application/json',
             },
         })
-            // .then(response => fakeData) //response.json())
-            // .then(data => {
-            //     // handle the response data
-            //     // console.log('token', data)
-            //     // navigate('/activityList', { state: { username, password } })
-            // })
+            .then(response => response.json())
             .then(data => {
                 // handle the response data
                 console.log('token', data)
+                data.name = username
                 navigate('/activityList', { state: data })
             })
             .catch(error => {
