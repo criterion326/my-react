@@ -1,0 +1,95 @@
+/* AuditPage.css */
+
+/* 使整个页面居中显示 */
+.upload-section,
+.status-message,
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.upload-section {
+  margin-top: 20px;
+}
+
+.status-message {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.table-container {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.ant-card {
+  width: 100%;
+  text-align: center;
+}
+
+.custom-input {
+  width: 50%;
+  margin: 10px 0;
+}
+
+.custom-table {
+  width: 100%;
+}
+.ant-table-wrapper {
+  background-color: #82ce99;
+  /* 设置表格背景色 */
+  padding: 10px;
+  border-radius: 10px;
+}
+.ant-table {
+  border-radius: 10px;
+}
+
+.ant-table-cell {
+  padding: 4px 8px;
+  /* 减少单元格内边距，使行高更小 */
+  background-color: #c6d3c2;
+  /* 设置单元格背景色 */
+}
+.title-left {
+  text-align: center;
+}
+
+.role-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.role-item {
+  margin-bottom: 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-section label {
+  background-color: #1890ff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-section label:hover {
+  background-color: #40a9ff;
+}
+.ant-radio-group {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f0f0f0;
+  /* 单选框的背景色 */
+  padding: 5px;
+  border-radius: 5px;
+}
