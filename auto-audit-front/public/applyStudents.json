@@ -1,0 +1,114 @@
+{
+    "activityId": 971,
+    "activityTitle": "【学术活动】“一国两制”在香港的实践",
+    "activityRoles": [
+        {
+            "role": "参与者",
+            "point": "0.00"
+        },
+        {
+            "role": "组织者",
+            "point": "0.00"
+        }
+    ],
+    "activityStudents": [
+        {
+            "id": 36339,
+            "userId": "21820245",
+            "role": "未参与",
+            "userName": "黄宇喆",
+            "activityId": 971
+        },
+        {
+            "id": 36388,
+            "userId": "22721481",
+            "role": "未参与",
+            "userName": "叶文斌",
+            "activityId": 971
+        },
+        {
+            "id": 36190,
+            "userId": "23721459",
+            "role": "未参与",
+            "userName": "段帅",
+            "activityId": 971
+        },
+        {
+            "id": 36189,
+            "userId": "23721461",
+            "role": "未参与",
+            "userName": "毛梦茜",
+            "activityId": 971
+        },
+        {
+            "id": 36217,
+            "userId": "23721463",
+            "role": "未参与",
+            "userName": "范亚婷",
+            "activityId": 971
+        },
+        {
+            "id": 36224,
+            "userId": "23721485",
+            "role": "未参与",
+            "userName": "展晨",
+            "activityId": 971
+        },
+        {
+            "id": 36193,
+            "userId": "23721486",
+            "role": "未参与",
+            "userName": "李春洁",
+            "activityId": 971
+        },
+        {
+            "id": 36225,
+            "userId": "23721489",
+            "role": "未参与",
+            "userName": "刘瑶",
+            "activityId": 971
+        },
+        {
+            "id": 36191,
+            "userId": "23721499",
+            "role": "未参与",
+            "userName": "李佳美",
+            "activityId": 971
+        },
+        {
+            "id": 36196,
+            "userId": "23721500",
+            "role": "未参与",
+            "userName": "张一丹",
+            "activityId": 971
+        },
+        {
+            "id": 36194,
+            "userId": "23721501",
+            "role": "未参与",
+            "userName": "王波",
+            "activityId": 971
+        },
+        {
+            "id": 36227,
+            "userId": "23721533",
+            "role": "未参与",
+            "userName": "钱磊",
+            "activityId": 971
+        },
+        {
+            "id": 36374,
+            "userId": "23721568",
+            "role": "未参与",
+            "userName": "李盈谕",
+            "activityId": 971
+        },
+        {
+            "id": 36192,
+            "userId": "23721578",
+            "role": "未参与",
+            "userName": "龚梦迪",
+            "activityId": 971
+        }
+    ]
+}

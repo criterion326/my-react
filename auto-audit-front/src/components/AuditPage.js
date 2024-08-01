@@ -18,120 +18,6 @@ import './AuditPage.css'
 import { useAuth } from '../AuthContext'
 import userEvent from '@testing-library/user-event'
 const { Title, Text } = Typography
-// const testdata = {
-//     activityId: 971,
-//     activityTitle: '【学术活动】“一国两制”在香港的实践',
-//     activityRoles: [
-//         {
-//             role: '参与者',
-//             point: '0.00',
-//         },
-//         {
-//             role: '组织者',
-//             point: '0.00',
-//         },
-//     ],
-//     activityStudents: [
-//         {
-//             id: 36339,
-//             userId: '21820245',
-//             role: '未参与',
-//             userName: '黄宇喆',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36388,
-//             userId: '22721481',
-//             role: '未参与',
-//             userName: '叶文斌',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36190,
-//             userId: '23721459',
-//             role: '未参与',
-//             userName: '段帅',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36189,
-//             userId: '23721461',
-//             role: '未参与',
-//             userName: '毛梦茜',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36217,
-//             userId: '23721463',
-//             role: '未参与',
-//             userName: '范亚婷',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36224,
-//             userId: '23721485',
-//             role: '未参与',
-//             userName: '展晨',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36193,
-//             userId: '23721486',
-//             role: '未参与',
-//             userName: '李春洁',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36225,
-//             userId: '23721489',
-//             role: '未参与',
-//             userName: '刘瑶',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36191,
-//             userId: '23721499',
-//             role: '未参与',
-//             userName: '李佳美',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36196,
-//             userId: '23721500',
-//             role: '未参与',
-//             userName: '张一丹',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36194,
-//             userId: '23721501',
-//             role: '未参与',
-//             userName: '王波',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36227,
-//             userId: '23721533',
-//             role: '未参与',
-//             userName: '钱磊',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36374,
-//             userId: '23721568',
-//             role: '未参与',
-//             userName: '李盈谕',
-//             activityId: 971,
-//         },
-//         {
-//             id: 36192,
-//             userId: '23721578',
-//             role: '未参与',
-//             userName: '龚梦迪',
-//             activityId: 971,
-//         },
-//     ],
-// }
 
 function AuditPage() {
     const { id } = useParams()
@@ -143,6 +29,9 @@ function AuditPage() {
     const [uploadStatus, setUploadStatus] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [activityData, setActivityData] = useState(null)
+    // 定义一个状态变量来存储文件ID
+    const [fileId, setFileId] = useState(null)
+    const [ocrResult, setOcrResult] = useState(null)
     const handleFileChange = event => {
         setSelectedFile(event.target.files[0])
     }
@@ -162,7 +51,9 @@ function AuditPage() {
                 await delay(2000)
 
                 if (response.ok) {
+                    const result = await response.json()
                     setUploadStatus(`文件 ${selectedFile.name} 上传成功！`)
+                    setFileId(result.fileId) // 保存文件ID
                 } else {
                     setUploadStatus('文件上传失败！')
                 }
@@ -174,6 +65,30 @@ function AuditPage() {
             }
         } else {
             setUploadStatus('请选择一个文件')
+        }
+    }
+    const handleOcr = async () => {
+        if (selectedFile) {
+            setIsLoading(true)
+            try {
+                const response = await fetch('http://localhost:3000/ocr', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ filename: selectedFile }),
+                })
+                const result = await response.json()
+                setOcrResult(result)
+                message.success('OCR识别成功')
+            } catch (error) {
+                console.error('OCR识别错误:', error)
+                message.error('OCR识别失败')
+            } finally {
+                setIsLoading(false)
+            }
+        } else {
+            message.error('请先上传文件')
         }
     }
     const fetchActivityData = async () => {
@@ -327,6 +242,18 @@ function AuditPage() {
             {uploadStatus && (
                 <div className="status-message">
                     <p>{uploadStatus}</p>
+                </div>
+            )}
+            {isLoading && (
+                <div className="status-message">
+                    <Spin />
+                </div>
+            )}
+            {/* // 修改渲染逻辑，使 fileId 存在时才显示“一键审核”按钮 */}
+            {fileId && <Button onClick={handleOcr}>一键审核</Button>}
+            {ocrResult && (
+                <div className="ocr-result">
+                    <pre>{JSON.stringify(ocrResult, null, 2)}</pre>
                 </div>
             )}
             {isLoading && (
