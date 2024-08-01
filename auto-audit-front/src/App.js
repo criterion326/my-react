@@ -12,9 +12,9 @@
 // export default App
 
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import './App.css'
-import LoginForm from './Login'
+import LoginForm from './components/Login'
 import ActivityList from './components/ActivityList'
 import AuditPage from './components/AuditPage'
 
@@ -23,6 +23,8 @@ function App() {
         <Router>
             <div className="App">
                 <Routes>
+                    <Route path="/" element={<Navigate to="/login" />} />{' '}
+                    {/* 默认重定向到 /login */}
                     <Route path="/login" element={<LoginForm />}></Route>
                     <Route path="/activityList" element={<ActivityList />}></Route>
                     <Route path="/audit/:id" element={<AuditPage />} />

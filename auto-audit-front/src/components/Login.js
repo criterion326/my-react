@@ -1,29 +1,8 @@
 import React, { useState } from 'react'
 // import { useHistory } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from './AuthContext' // 引入 AuthContext
-const fakeData = {
-    code: 200,
-    result: {
-        token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNzIxMDY1NTkwLCJqdGkiOiIyZWIxZWNlZC1hNDUxLTQyOGQtOGRjMy04ZTljMDljZjIzZjQiLCJuYmYiOjE3MjEwNjU1OTAsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOnsidXNlcl9pZCI6IjIyNzIxNDgxIiwidXNlcl9yb2xlIjoic3R1ZGVudCIsImlzX3N1cGVydXNlciI6ZmFsc2V9LCJleHAiOjE3MjE2NzAzOTB9.4syI2ESDiWdtbOyOG_CugbHyybtDuHrNNwQn6PDHNbo',
-        user_id: '22721481',
-        name: '叶文斌',
-        role: 'student',
-        menu: [],
-    },
-    message: '操作成功！',
-}
-// function getFakeToken() {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             resolve
-//         }, 1000)
-//     })
-// }
-// async function handleLogin() {
-//     const token = await getFakeToken()
-//     return token
-// }
+import { useAuth } from '../AuthContext' // 引入 AuthContext
+
 function LoginForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')

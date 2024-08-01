@@ -136,8 +136,8 @@ const { Title, Text } = Typography
 function AuditPage() {
     const { id } = useParams()
     // const location = useLocation()
-    const token = useAuth()
-    console.log('id', id, 'token', token)
+    const token = useAuth().token //获取其中的token
+    // console.log('id', id, 'token', token)
 
     const [selectedFile, setSelectedFile] = useState(null)
     const [uploadStatus, setUploadStatus] = useState('')
