@@ -20,7 +20,8 @@ import './ActivityList.css' // 引入自定义的 CSS 文件
 function Greeting(props) {
     return <h1>你好, {props.name}!</h1>
 }
-function SortableTable({ columns, data, handleAuditClick }) {
+
+function SortableTable({ columns, data, handleAuditClick, handlePageChange }) {
     const {
         getTableProps,
         getTableBodyProps,
@@ -40,11 +41,15 @@ function SortableTable({ columns, data, handleAuditClick }) {
         {
             columns,
             data,
-            initialState: { pageIndex: 0 }, // 初始页码
+            initialState: { pageIndex: 0, pageSize: 20 }, // 初始页码和每页条数
         },
         useSortBy,
         usePagination // 使用分页插件
     )
+    useEffect(() => {
+        // 每当 pageIndex 或 pageSize 变化时，调用父组件的回调函数
+        handlePageChange(pageIndex, pageSize)
+    }, [pageIndex, pageSize])
     // 初始化表格状态和钩子：通过useTable钩子，传入列定义(columns)和数据(data)，以及初始状态（如初始页码pageIndex: 0）。此外，还使用了useSortBy和usePagination插件来为表格添加排序和分页功能。
 
     // 渲染表格容器：使用<div>标签创建一个包含表格的容器，类名为table-container。
@@ -97,7 +102,7 @@ function SortableTable({ columns, data, handleAuditClick }) {
                                     ) : cell.column.id === 'action' ? (
                                         <td {...cell.getCellProps()}>
                                             <button
-                                                onClick={() => handleAuditClick(row.cells[1].value)}
+                                                onClick={() => handleAuditClick(row.original.id)}
                                             >
                                                 审核
                                             </button>
@@ -137,7 +142,7 @@ function SortableTable({ columns, data, handleAuditClick }) {
                         setPageSize(Number(e.target.value))
                     }}
                 >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
+                    {[10, 20, 30, 40, 50, 100].map(pageSize => (
                         <option key={pageSize} value={pageSize}>
                             Show {pageSize}
                         </option>
@@ -151,31 +156,69 @@ function SortableTable({ columns, data, handleAuditClick }) {
 function namechange(number) {
     switch (number) {
         case 0:
-            return '党建'
+            // return '党建'
+            return '研究生会'
         case 1:
             return '团总支'
         case 2:
-            return '研究生会'
+            return '党总支'
+        case 3:
+            return '双创俱乐部'
         default:
             return '无'
     }
 }
+async function fetchActivitiesFromBackend(token, currentPage, pageSize, user_id) {
+    const response = await fetch(
+        `http://localhost:3000/activities?currentPage=${
+            currentPage + 1
+        }&pageSize=${pageSize}&user_id=${user_id}`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`, // 添加 token 到请求头
+            },
+        }
+    )
+    const data = await response.json()
+    return data
+}
+// 写一个转化函数，将userid转化为数字，规则是：0->研究生会，1->团总支，2->党建，其他->无 ，中文转数字
+function name2id(user_id) {
+    switch (user_id) {
+        case 'yan':
+        case '研究生会':
+            return 0
+        case 'tuan':
+        case '团总支':
+            return 1
+        case 'dang':
+        case '党总支':
+            return 2
+        case 'chuang':
+        case '双创俱乐部':
+            return 3
+        default:
+            return '无'
+    }
+}
+
 function ActivityList() {
     const location = useLocation()
     const navigate = useNavigate()
     const res = location.state || {}
     console.log('ActivityList', res)
-    const { name: username, token } = res
+    const { name: username, token, user_id } = res
     console.log(username)
     const [data, setData] = useState([])
-
+    const [initialActivityData, setInitialActivityData] = useState(null)
+    const [currentPage, setCurrentPage] = useState(0)
+    const [pageSize, setPageSize] = useState(20)
     useEffect(() => {
-        fetch('/activities.json') // 确保路径正确
-            .then(response => response.json())
+        fetchActivitiesFromBackend(token, currentPage, pageSize, name2id(user_id))
             .then(data => {
                 data = data.result.data || []
-                console.log('read json', data)
-
+                console.log('read data from backend', data)
+                setInitialActivityData(data)
                 if (Array.isArray(data)) {
                     const formattedData = data.map(item => ({
                         id: item.id,
@@ -185,7 +228,8 @@ function ActivityList() {
                         selectPublisher: namechange(item.selectPublisher),
                         applyStatus: item.applyStatus,
                         activityRoles: item.activityRoles || '无',
-                        applyEndTime: item.applyDeadline,
+                        applyDeadline: item.applyDeadline,
+                        activityContent: item.activityContent, // 确保包含 activityContent
                     }))
                     setData(formattedData)
                 } else {
@@ -195,12 +239,26 @@ function ActivityList() {
             .catch(error => {
                 console.error('Error fetching data:', error)
             })
-    }, [])
-    const handleAuditClick = id => {
-        // navigate.push(`/audit/${id}`)
-        navigate('/audit/' + id, { state: { username, token } })
-    }
+    }, [token, currentPage, pageSize, user_id])
+    //   const handleAuditClick = activityData => {
+    //       console.log('activityData', activityData)
+    //       navigate('/audit/' + activityData.id, { state: { activityData, token } })
+    // }
 
+    const handlePageChange = (newPageIndex, newPageSize) => {
+        setCurrentPage(newPageIndex)
+        setPageSize(newPageSize)
+    } // 用于处理页码和每页条数变化的回调函数
+
+    const handleAuditClick = id => {
+        const activityData = initialActivityData.find(item => item.id === id)
+        console.log('handleAuditClick activityData', activityData)
+        if (activityData) {
+            navigate('/audit/' + id, { state: { activityData, token } })
+        } else {
+            console.error('Activity not found for id:', id)
+        }
+    }
     const columns = [
         {
             Header: '序号',
@@ -236,14 +294,12 @@ function ActivityList() {
         },
         {
             Header: '申请截至时间',
-            accessor: 'applyEndTime',
+            accessor: 'applyDeadline',
         },
         {
             Header: '操作',
             id: 'action',
-            Cell: ({ row }) => (
-                <button onClick={() => handleAuditClick(row.original.id)}>审核</button>
-            ), // 通过row.original获取原始数据)
+            Cell: ({ row }) => <button onClick={() => handleAuditClick(row.original)}>审核</button>, // 通过row.original获取原始数据)
         },
     ]
     return (
@@ -253,7 +309,12 @@ function ActivityList() {
                 <Greeting name={username} />
             </div>
             <div>
-                <SortableTable data={data} columns={columns} handleAuditClick={handleAuditClick} />
+                <SortableTable
+                    data={data}
+                    columns={columns}
+                    handleAuditClick={handleAuditClick}
+                    handlePageChange={handlePageChange}
+                />
             </div>
         </div>
     )

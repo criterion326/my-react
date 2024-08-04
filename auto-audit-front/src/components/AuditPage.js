@@ -13,6 +13,7 @@ import {
     Spin,
     message,
     Radio,
+    Modal,
 } from 'antd'
 import './AuditPage.css'
 import { useAuth } from '../AuthContext'
@@ -21,17 +22,34 @@ const { Title, Text } = Typography
 
 function AuditPage() {
     const { id } = useParams()
+    const location = useLocation()
     // const location = useLocation()
     const token = useAuth().token //获取其中的token
     // console.log('id', id, 'token', token)
-
+    const { activityData: initialActivityData } = location.state // 获取传递的activityData
     const [selectedFile, setSelectedFile] = useState(null)
-    const [uploadStatus, setUploadStatus] = useState('')
+    // const [uploadStatus, setUploadStatus] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [activityData, setActivityData] = useState(null)
     // 定义一个状态变量来存储文件ID
     const [fileId, setFileId] = useState(null)
     const [ocrResult, setOcrResult] = useState(null)
+    const [editedRoles, setEditedRoles] = useState([])
+    const [isModalVisible, setIsModalVisible] = useState(false) // 用于控制 Modal 的显示
+
+    const showModal = () => {
+        setIsModalVisible(true)
+    }
+
+    const handleOk = async () => {
+        setIsModalVisible(false)
+        await handleUpdate() // 调用更新函数
+    }
+
+    const handleCancel = () => {
+        setIsModalVisible(false)
+    }
+
     const handleFileChange = event => {
         setSelectedFile(event.target.files[0])
     }
@@ -42,45 +60,92 @@ function AuditPage() {
             const formData = new FormData()
             formData.append('file', selectedFile)
             setIsLoading(true)
-            setUploadStatus('上传中')
+            // setUploadStatus('上传中')
+            message.info('上传中')
             try {
                 const response = await fetch('http://localhost:3000/upload', {
                     method: 'POST',
                     body: formData,
                 })
-                await delay(2000)
+                await delay(1000)
 
                 if (response.ok) {
                     const result = await response.json()
-                    setUploadStatus(`文件 ${selectedFile.name} 上传成功！`)
+                    message.success(`文件 ${selectedFile.name} 上传成功！`) // 显示成功信息
                     setFileId(result.fileId) // 保存文件ID
+                    message.success(response.message)
                 } else {
-                    setUploadStatus('文件上传失败！')
+                    message.error('文件上传失败！') // 显示失败信息
+                    message.error(response.message)
                 }
             } catch (error) {
                 console.error('上传错误:', error)
-                setUploadStatus('文件上传失败！')
+                message.error('文件上传失败！') // 显示异常信息
             } finally {
                 setIsLoading(false)
             }
         } else {
-            setUploadStatus('请选择一个文件')
+            message.warning('请选择一个文件') // 文件未选择时的提示
         }
     }
+    const handleUpdate = async () => {
+        //这里写成handleUpdate是要表达通用的意思，但其实只修改了Roles中的point
+        const requestBody = {
+            id: parseInt(id), // 将id放入requestBody
+            checkName: '研',
+            checkDate: new Date().toISOString(),
+            isActive: false,
+            activityTitle: initialActivityData.activityTitle,
+            selectPublisher: initialActivityData.selectPublisher,
+            activityStartTime: initialActivityData.activityStartTime,
+            activityEndTime: initialActivityData.activityEndTime,
+            applyDeadline: initialActivityData.applyDeadline,
+            activityContent: initialActivityData.activityContent,
+            activityRoles: editedRoles,
+            applyStatus: initialActivityData.applyStatus,
+        }
+        console.log('handleUpdate requestBody', requestBody)
+        try {
+            const response = await fetch(`http://localhost:3000/updateActivity`, {
+                // 使用新的接口名称
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`, // 添加 token 到请求头
+                },
+                body: JSON.stringify(requestBody),
+            })
+            if (response.ok) {
+                message.success('活动数据更新成功')
+            } else {
+                message.error('活动数据更新失败')
+            }
+        } catch (error) {
+            console.error('更新错误:', error)
+            message.error('活动数据更新失败')
+        }
+    }
+
     const handleOcr = async () => {
-        if (selectedFile) {
+        if (fileId) {
+            // 确保文件已经上传，并且 fileId 已被设置
             setIsLoading(true)
             try {
-                const response = await fetch('http://localhost:3000/ocr', {
+                // 向后端发送带有 fileId 参数的 POST 请求
+                const response = await fetch(`http://localhost:3000/ocr/${fileId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ filename: selectedFile }),
+                    body: JSON.stringify({ filename: fileId }), // 可以在请求体内也传递文件名，如果后端需要
                 })
                 const result = await response.json()
-                setOcrResult(result)
-                message.success('OCR识别成功')
+                // setOcrResult(result)
+                if (response.ok) {
+                    message.info(`OCR识别结果: ${JSON.stringify(result)}`) // 使用 message.info 显示 OCR 结果
+                } else {
+                    message.error('OCR识别失败') // 如果响应不是 ok，显示错误信息
+                }
             } catch (error) {
                 console.error('OCR识别错误:', error)
                 message.error('OCR识别失败')
@@ -88,9 +153,10 @@ function AuditPage() {
                 setIsLoading(false)
             }
         } else {
-            message.error('请先上传文件')
+            message.error('请先上传文件') // 如果 fileId 未设置，提示用户
         }
     }
+
     const fetchActivityData = async () => {
         setIsLoading(true)
         // const token=localStorage.getItem('token')
@@ -105,6 +171,7 @@ function AuditPage() {
             if (data.code === 200) {
                 console.log('data', data)
                 setActivityData(data.result)
+                setEditedRoles(data.result.activityRoles) // 初始化editedRoles
                 message.success('获取活动数据成功')
             } else {
                 message.error('获取活动数据失败')
@@ -133,7 +200,13 @@ function AuditPage() {
                 return '#f5f5f5' // 默认背景色
         }
     }
-
+    const handlePointChange = (roleIndex, newPoint) => {
+        setEditedRoles(prevRoles =>
+            prevRoles.map((role, index) =>
+                index === roleIndex ? { ...role, point: newPoint } : role
+            )
+        )
+    }
     const handleRoleChange = (id, newRole) => {
         // const token=localStorage.getItem('token')
         setActivityData(prevState => {
@@ -147,7 +220,8 @@ function AuditPage() {
                 checkName: '研',
                 activityStudents: updatedStudents.filter(student => student.id === id),
             }
-
+            // 提示谁的信息被修改了
+            message.info(`ID为 ${id} 的学生信息已被修改`)
             // 发起POST请求
             fetch('http://localhost:3000/updateRole', {
                 method: 'POST',
@@ -225,37 +299,47 @@ function AuditPage() {
     return (
         <div>
             <h2>审核页面, 正在审核的活动ID：{id}</h2>
-            <div className="upload-section">
+
+            <div>
+                {/* <label for="file-upload" class="custom-file-upload">
+                    自定义上传按钮
+                </label> */}
                 <input
                     type="file"
                     accept=".pdf,image/*"
                     onChange={handleFileChange}
                     className="custom-input"
                 />
+                {/* <Button onClick={() => document.querySelector('input[type="file"]').click()}> */}
                 <Button onClick={handleUpload}>上传文件</Button>
             </div>
-            {selectedFile && (
+            {/* {selectedFile && (
                 <div className="status-message">
                     <p>选中的文件: {selectedFile.name}</p>
                 </div>
-            )}
-            {uploadStatus && (
+            )} */}
+            {/* {uploadStatus && (
                 <div className="status-message">
                     <p>{uploadStatus}</p>
                 </div>
-            )}
+            )} */}
             {isLoading && (
                 <div className="status-message">
                     <Spin />
                 </div>
             )}
             {/* // 修改渲染逻辑，使 fileId 存在时才显示“一键审核”按钮 */}
-            {fileId && <Button onClick={handleOcr}>一键审核</Button>}
-            {ocrResult && (
+            {fileId && (
+                <div>
+                    <p>文件名: {fileId}</p>
+                    <Button onClick={handleOcr}>一键审核</Button>
+                </div>
+            )}
+            {/* {ocrResult && (
                 <div className="ocr-result">
                     <pre>{JSON.stringify(ocrResult, null, 2)}</pre>
                 </div>
-            )}
+            )} */}
             {isLoading && (
                 <div className="status-message">
                     <p>加载中...</p>
@@ -281,9 +365,16 @@ function AuditPage() {
                             <div className="role-container">
                                 {activityData?.activityRoles.map((role, index) => (
                                     <div key={index} className="role-item">
-                                        <Text className="ant-typography">
-                                            {role.role}: {role.point}分
-                                        </Text>
+                                        <Text className="ant-typography">{role.role}:</Text>
+                                        <Input
+                                            style={{ marginLeft: '10px', width: '100px' }}
+                                            value={editedRoles[index]?.point || ''}
+                                            onChange={e => handlePointChange(index, e.target.value)}
+                                            placeholder="请输入分数"
+                                        />
+                                        <Button onClick={showModal} style={{ marginLeft: '10px' }}>
+                                            保存
+                                        </Button>
                                     </div>
                                 ))}
                             </div>
@@ -316,6 +407,16 @@ function AuditPage() {
                 </Row>
                 <Divider />
             </div>
+            <Modal
+                title="确认"
+                visible={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                okText="确认"
+                cancelText="取消"
+            >
+                <p>确定要保存修改吗？</p>
+            </Modal>
         </div>
     )
 }

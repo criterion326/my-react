@@ -48,7 +48,19 @@
 .ant-table {
   border-radius: 10px;
 }
+/* .custom-file-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #1890ff;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+} */
 
+.custom-file-upload:hover {
+  background-color: #40a9ff;
+}
 .ant-table-cell {
   padding: 4px 8px;
   /* 减少单元格内边距，使行高更小 */
@@ -70,9 +82,9 @@
   margin-bottom: 10px;
 }
 
-input[type="file"] {
+/* input[type="file"] {
   display: none;
-}
+} */
 
 .upload-section label {
   background-color: #1890ff;

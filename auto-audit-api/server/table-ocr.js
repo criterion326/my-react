@@ -8,10 +8,10 @@ const OcrClient = tencentcloud.ocr.v20181119.Client
 // 密钥可前往官网控制台 https://console.cloud.tencent.com/cam/capi 进行获取
 const clientConfig = {
     credential: {
-        SecretId: 'AKIDOhw7A0GNLDzpaAd2LYefZVL2Xs5KQODr',
-        SecretKey: 'jKkkhVCnGbosnbEj6KROBuY1Xu8D9ywn',
+        SecretId: 'AKIDlS3PWP2QXhYRXYNyKQG1dzLabPyNiwwI',
+        SecretKey: 'IMBlKlyXwA2jDetJWVHpMmzzmKqOqLhr',
     },
-    region: '',
+    region: 'ap-shanghai',
     profile: {
         httpProfile: {
             endpoint: 'ocr.tencentcloudapi.com',
@@ -20,7 +20,7 @@ const clientConfig = {
 }
 
 // 实例化要请求产品的client对象,clientProfile是可选的
-// const client = new OcrClient(clientConfig)
+const client = new OcrClient(clientConfig)
 // const params = {}
 // client.RecognizeTableAccurateOCR(params).then(
 //     data => {
@@ -35,12 +35,13 @@ const recognizeTable = async base64Image => {
     const params = {
         ImageBase64: base64Image,
     }
+
     try {
         const data = await client.RecognizeTableAccurateOCR(params)
         return data
     } catch (err) {
-        console.error('error', err)
-        throw err
+        console.error('OCR 识别错误:', err)
+        throw err // 根据你的错误处理策略，这里可以是抛出错误或者返回错误信息
     }
 }
 

@@ -6,6 +6,7 @@ import { useAuth } from '../AuthContext' // 引入 AuthContext
 function LoginForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [user_id, setUser_id] = useState('')
     // let history = useHistory()
     let navigate = useNavigate()
     const { saveToken } = useAuth() // 从 AuthContext 获取 saveToken 函数
@@ -29,7 +30,9 @@ function LoginForm() {
             .then(data => {
                 if (data.success) {
                     // 保存 token 到全局状态
+                    console.log('登录成功:', data)
                     saveToken(data.token)
+                    setUser_id(data.user_id)
                     // 将用户数据和 token 保存到 state 并跳转到活动列表页面
                     navigate('/activityList', { state: { ...data, name: username } })
                 } else {
