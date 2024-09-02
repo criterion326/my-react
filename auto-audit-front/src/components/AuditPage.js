@@ -17,6 +17,7 @@ import {
 } from 'antd'
 import './AuditPage.css'
 import { useAuth } from '../AuthContext'
+import Fuse from 'fuse.js'
 import userEvent from '@testing-library/user-event'
 const { Title, Text } = Typography
 
@@ -125,6 +126,32 @@ function AuditPage() {
             message.error('活动数据更新失败')
         }
     }
+    const processOcrResult = ocrResult => {
+        console.log('ocrResult', ocrResult)
+        if (!ocrResult) {
+            message.error('OCR结果无效')
+            return
+        }
+
+        // 将OCR结果按空格分割，并去除每个词的首尾空格和换行符
+        const words = ocrResult
+            .split(' ')
+            .map(word => word.trim())
+            .filter(word => word.length > 0)
+        const fuse = new Fuse(activityData.activityStudents, {
+            keys: ['userName'],
+            threshold: 0.9, // 设置一个阈值，数值越低匹配越严格
+        })
+        words.forEach(word => {
+            const result = fuse.search(word)
+            if (result.length > 0) {
+                const student = result[0].item
+                handleRoleChange(student.id, '参与者')
+            } else {
+                console.warn(`未找到匹配的学生姓名: ${word}`)
+            }
+        })
+    }
 
     const handleOcr = async () => {
         if (fileId) {
@@ -140,9 +167,11 @@ function AuditPage() {
                     body: JSON.stringify({ filename: fileId }), // 可以在请求体内也传递文件名，如果后端需要
                 })
                 const result = await response.json()
+                var text = JSON.stringify(result)
                 // setOcrResult(result)
                 if (response.ok) {
-                    message.info(`OCR识别结果: ${JSON.stringify(result)}`) // 使用 message.info 显示 OCR 结果
+                    message.info(`OCR识别结果: ${result}`) // 使用 message.info 显示 OCR 结果
+                    processOcrResult(text) // 调用处理OCR结果的函数
                 } else {
                     message.error('OCR识别失败') // 如果响应不是 ok，显示错误信息
                 }
