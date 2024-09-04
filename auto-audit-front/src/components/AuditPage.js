@@ -14,13 +14,14 @@ import {
     message,
     Radio,
     Modal,
+    Select,
 } from 'antd'
 import './AuditPage.css'
 import { useAuth } from '../AuthContext'
 import Fuse from 'fuse.js'
 import userEvent from '@testing-library/user-event'
 const { Title, Text } = Typography
-
+const { Option } = Select
 function AuditPage() {
     const { id } = useParams()
     const location = useLocation()
@@ -37,7 +38,13 @@ function AuditPage() {
     const [ocrResult, setOcrResult] = useState(null)
     const [editedRoles, setEditedRoles] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false) // 用于控制 Modal 的显示
-
+    //下拉学生数据
+    const [studentOptions, setStudentOptions] = useState([]) // 存储从后端获取的学生列表
+    const [selectedStudents, setSelectedStudents] = useState([]) // 存储已选择的学生
+    // 在组件加载时获取学生数据
+    useEffect(() => {
+        fetchStudents() // 组件加载时调用
+    }, []) // 空依赖数组意味着只在组件第一次渲染时调用
     const showModal = () => {
         setIsModalVisible(true)
     }
@@ -203,7 +210,8 @@ function AuditPage() {
                 setEditedRoles(data.result.activityRoles) // 初始化editedRoles
                 message.success('获取活动数据成功')
             } else {
-                message.error('获取活动数据失败')
+                console.error('获取活动数据失败:', data)
+                message.error('获取活动数据失败,因为' + data.error.message)
             }
         } catch (error) {
             console.error('获取活动数据错误:', error)
@@ -275,6 +283,110 @@ function AuditPage() {
 
             return { ...prevState, activityStudents: updatedStudents }
         })
+    }
+    // 从后端获取学生数据
+    const fetchStudents = async () => {
+        try {
+            const response = await fetch(`http://localhost:3000/students`, {
+                headers: {
+                    Authorization: `Bearer ${token}`, // 添加 token 到请求头
+                },
+            })
+
+            const data = await response.json()
+            console.log(data)
+            if (response.ok && Array.isArray(data.students)) {
+                setStudentOptions(data.students) // 将学生数据设置到 state 中
+            } else {
+                message.error('获取学生数据失败或数据格式不正确')
+            }
+        } catch (error) {
+            console.error('获取学生数据错误:', error)
+            message.error('获取学生数据错误')
+        }
+    }
+
+    // 处理选择学生
+    // const handleStudentSelect = value => {
+    //     const selectedStudent = studentOptions.find(student => student.userId === value)
+    //     console.log('selectedStudent', selectedStudent)
+    //     if (selectedStudent) {
+    //         setSelectedStudents(prev => [...prev, selectedStudent]) // 将选择的学生加入已选择的列表
+    //         message.success(`学生 ${selectedStudent.userName} 已添加`)
+    //     }
+    // }
+    // 处理选择的学生
+    // const handleStudentSelect = values => {
+    //     const selected = studentOptions.filter(student => values.includes(student.userId)) // 根据选中的ID筛选出学生
+    //     console.log('选中的', selected)
+    //     setSelectedStudents(selected) // 更新已选择的学生
+    // }
+    // 处理选择的学生
+    const handleStudentSelect = values => {
+        console.log('选中的学生ID:', values)
+        setSelectedStudents(values) // 更新已选择的学生ID
+    }
+    const handleClearStudents = () => {
+        setSelectedStudents([]) // 清空已选择的学生
+        console.log('清空后:', selectedStudents)
+    }
+    // 点击新增学生按钮时，调用后端接口新增学生并更新表格
+    const handleAddStudents = async id => {
+        if (selectedStudents.length === 0) {
+            message.warning('请选择学生')
+            return
+        }
+        // 获取活动已有的学生ID
+        const existingStudentIds = activityData.activityStudents.map(student => student.userId)
+        // console.log('existingStudentIds', existingStudentIds)
+        // 过滤出不在 activityData.activityStudents 中的学生
+        const newStudents = selectedStudents.filter(
+            studentId => !existingStudentIds.includes(studentId)
+        )
+
+        if (newStudents.length === 0) {
+            message.info('所选学生均已参与，无需新增')
+            return
+        }
+
+        // 构建请求体，将所有要新增的学生一次性发送到后端
+        const requestBody = {
+            students: newStudents.map(studentId => ({
+                activityId: id, // 活动ID需要动态获取
+                userId: studentId,
+                role: '未参与', // 默认角色
+            })),
+        }
+        console.log('新增学生请求体:', requestBody)
+        try {
+            // 使用 fetch 发送批量请求到后端
+            const response = await fetch('http://localhost:3000/addStudentBatch', {
+                method: 'POST',
+                headers: {
+                    Authorization: token, // 添加 token 到请求头
+                },
+                body: requestBody,
+            })
+
+            const data = await response.json()
+
+            if (response.ok && data.success) {
+                const { successList, failureList } = data
+
+                // 根据返回结果提示用户
+                if (successList.length > 0) {
+                    message.success(`成功添加以下学生: ${successList.join(', ')}`)
+                }
+                if (failureList.length > 0) {
+                    message.error(`以下学生添加失败: ${failureList.join(', ')}`)
+                }
+            } else {
+                message.error('新增学生失败')
+            }
+        } catch (error) {
+            console.error('新增学生错误:', error)
+            message.error('新增学生请求失败')
+        }
     }
     const columns = [
         {
@@ -411,15 +523,55 @@ function AuditPage() {
                     </Col>
                     <Col span={18}>
                         <Card>
-                            <Title level={4} className="title-left"></Title>
-                            <Input.Search
-                                placeholder="请输入学号查询学生"
-                                className="custom-input"
-                                style={{ marginBottom: 16 }}
-                            />
-                            <Button type="primary" style={{ marginBottom: 16 }}>
-                                新增学生
-                            </Button>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <span
+                                    style={{
+                                        marginRight: 16,
+                                        fontSize: '16px',
+                                        fontWeight: 'bold',
+                                    }}
+                                >
+                                    新增:
+                                </span>
+                                <Select
+                                    mode="multiple"
+                                    showSearch
+                                    placeholder="输入学号或姓名查询"
+                                    value={selectedStudents} // 绑定 Select 的 value 到 selectedStudents
+                                    onChange={handleStudentSelect} // 处理选择
+                                    filterOption={(input, option) => {
+                                        const searchText = input.toLowerCase()
+                                        const optionText =
+                                            `${option.value} ${option.name}`.toLowerCase() // 将 userId 和 userName 拼接在一起作为 optionText
+                                        return optionText.includes(searchText) // 模糊查询
+                                    }}
+                                    style={{ width: '500px', marginRight: 16 }} // 设置Select宽度
+                                >
+                                    {studentOptions.map(student => (
+                                        <Option
+                                            key={student.userId}
+                                            value={student.userId}
+                                            name={student.userName}
+                                        >
+                                            {student.userId} - {student.userName}
+                                        </Option>
+                                    ))}
+                                </Select>
+                                <Button
+                                    type="primary"
+                                    style={{ marginRight: 16, marginTop: 0 }}
+                                    onClick={handleClearStudents}
+                                >
+                                    清除全部
+                                </Button>
+                                <Button
+                                    type="primary"
+                                    style={{ marginRight: 16, marginTop: 0 }}
+                                    onClick={handleAddStudents}
+                                >
+                                    新增学生
+                                </Button>
+                            </div>
                             <div className="table-container">
                                 <Table
                                     className="custom-table"
