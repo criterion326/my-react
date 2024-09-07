@@ -58,29 +58,27 @@ app.post('/login', async (req, res) => {
 })
 // 新增的处理单选框状态更新的路由
 app.post('/updateRole', async (req, res) => {
-    const { activityId, checkName, activityStudents } = req.body
-    const token = req.headers.authorization.split(' ')[1] // 获取请求头中的token
+    // const { activityId, checkName, activityStudents } = req.body
+    const token = req.headers.authorization // 获取请求头中的token
     // 打印接收到的数据
-    logger.info('Received updateRole request', { activityId, checkName, activityStudents })
+    // logger.info('Received updateRole request', { activityId, checkName, activityStudents })
 
     // 构建请求体
-    const requestBody = {
-        activityId,
-        checkName,
-        activityStudents,
-    }
-
+    // const requestBody = {
+    //     activityId,
+    //     checkName,
+    //     activityStudents,
+    // }
+    logger.info('requestBody1111', req.body, token)
+    console.log('req', req.body, token)
     try {
         // 向远程服务器发起POST请求
-        const response = await axios.post(
-            'http://106.54.0.160:5001/api/activity/audit',
-            requestBody,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`, // 添加token到请求头
-                },
-            }
-        )
+        const response = await axios.post('http://106.54.0.160:5001/api/activity/audit', req.body, {
+            headers: {
+                Authorization: `Bearer ${token}`, // 添加token到请求头
+                'Content-Type': 'application/json',
+            },
+        })
         logger.info('Role update response', response.data)
         if (response.data && response.data.code === 200) {
             res.json({ success: true, message: '角色更新成功' })
@@ -188,15 +186,15 @@ app.get('/students', (req, res) => {
 })
 // 路由处理 - 添加学生
 app.post('/addStudentBatch', async (req, res) => {
-    const { activityId, studentsData } = req.body
+    const studentsData = req.body
     const token = req.headers.authorization // 从请求头中获取 token
-
+    // console.log('req.body', req.body)
     if (!token) {
         return res.status(401).json({ success: false, message: '未授权，缺少token' })
     }
 
     // 调用 addStudentsBatch 函数
-    const result = await addStudentsBatch(activityId, studentsData, token)
+    const result = await addStudentsBatch(studentsData, token)
 
     // 根据返回结果发送响应
     if (result.success) {

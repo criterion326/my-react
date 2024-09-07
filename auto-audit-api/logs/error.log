@@ -40,3 +40,168 @@
 2024-09-04T07:53:04.943Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
 2024-09-04T08:09:13.150Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
 2024-09-04T08:10:26.740Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-04T14:55:11.243Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-04T14:55:18.523Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-04T14:55:50.597Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-04T15:03:39.196Z [my-app] error: Activity details request error connect ETIMEDOUT 106.54.0.160:5001 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:841:14)
+2024-09-04T15:04:08.420Z [my-app] error: Activity details request error connect ETIMEDOUT 106.54.0.160:5001 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:841:14)
+2024-09-04T15:04:17.167Z [my-app] error: Activity details request error connect ETIMEDOUT 106.54.0.160:5001 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:841:14)
+2024-09-06T05:49:08.062Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:49:30.882Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:50:11.091Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:50:15.385Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:50:22.238Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:50:37.706Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:50:43.377Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:50:59.025Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:51:05.501Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:51:18.432Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:51:29.526Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:51:39.300Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:56:00.995Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:57:25.797Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:58:10.930Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:58:50.052Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T05:59:09.896Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:23:21.331Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:23:25.755Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:23:50.426Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:25:01.215Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:25:13.895Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:25:37.069Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:25:41.334Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:26:28.549Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:46:43.999Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:51:27.424Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:54:48.516Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:55:27.044Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T06:58:10.862Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T07:04:02.538Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T07:06:19.758Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T07:09:33.437Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T07:21:00.751Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:18:26.616Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:21:01.855Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:21:08.198Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:27:03.747Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:33:02.633Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:34:04.386Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:38:45.046Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:39:49.277Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:44:52.087Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:45:24.940Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:45:39.350Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:46:02.581Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:48:00.566Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T08:49:53.614Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T14:44:18.318Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-06T14:44:52.962Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T08:10:46.507Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T08:10:51.870Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T08:11:12.341Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T08:11:18.681Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T08:14:22.940Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T08:15:00.391Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T09:24:14.698Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T10:11:08.807Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T10:11:50.518Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T10:11:53.868Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T10:13:11.028Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T12:58:20.062Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:00:33.581Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:02:31.689Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:02:35.824Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:02:43.958Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:02:46.804Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:03:05.873Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:03:08.227Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:03:11.875Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:07:10.503Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:15:51.544Z [my-app] error: Role update request error Internal Server Error 
+2024-09-07T13:17:11.197Z [my-app] error: Role update request error Internal Server Error 
+2024-09-07T13:17:46.065Z [my-app] error: Role update request error Internal Server Error 
+2024-09-07T13:17:46.067Z [my-app] error: Role update request error Internal Server Error 
+2024-09-07T13:20:41.675Z [my-app] error: Role update request error Internal Server Error 
+2024-09-07T13:20:41.676Z [my-app] error: Role update request error Internal Server Error 
+2024-09-07T13:21:23.224Z [my-app] error: Role update request error Internal Server Error 
+2024-09-07T13:21:25.843Z [my-app] error: Role update request error Internal Server Error 
+2024-09-07T13:23:25.789Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:24:00.137Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:25:06.414Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:27:06.324Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:28:13.753Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:28:58.786Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:29:16.155Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:29:16.210Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:41:46.627Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:45:57.931Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:46:28.234Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:46:35.678Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:48:22.458Z [my-app] error: Role update request error Input payload validation failed 
+2024-09-07T13:49:58.208Z [my-app] error: Role update request error 参数为空 
+2024-09-07T13:50:24.834Z [my-app] error: Role update request error 审核活动失败！ 
+2024-09-07T13:54:29.954Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:55:13.190Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:55:18.035Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T13:55:40.713Z [my-app] error: Role update request error 参数为空 
+2024-09-07T13:56:27.601Z [my-app] error: Role update request error 参数为空 
+2024-09-07T13:57:52.402Z [my-app] error: Role update request error 参数为空 
+2024-09-07T13:58:31.776Z [my-app] error: Role update request error 参数为空 
+2024-09-07T13:59:16.639Z [my-app] error: Role update request error 参数为空 
+2024-09-07T13:59:33.513Z [my-app] error: Role update request error 参数为空 
+2024-09-07T14:00:25.426Z [my-app] error: Role update request error 参数为空 
+2024-09-07T14:00:55.195Z [my-app] error: Role update request error 参数为空 
+2024-09-07T14:01:54.411Z [my-app] error: Role update request error 参数为空 
+2024-09-07T14:01:58.044Z [my-app] error: Role update request error 参数为空 
+2024-09-07T14:01:59.417Z [my-app] error: Role update request error 参数为空 
+2024-09-07T14:09:17.881Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.163Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.179Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.196Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.209Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.229Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.232Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.244Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.250Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.251Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.252Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.253Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.262Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.264Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.271Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.273Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.276Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.280Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.282Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.282Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.288Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.289Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.307Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.323Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.353Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.370Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.371Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.376Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.377Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.449Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.452Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.453Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.454Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.512Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.514Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.515Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.517Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.529Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.531Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.532Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.536Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.559Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.585Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.629Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.647Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.675Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.690Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.706Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.721Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.736Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-07T14:10:27.754Z [my-app] error: Activity details request error Request failed with status code 404 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
