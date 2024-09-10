@@ -31,13 +31,15 @@ export const useHandleRoleChange = token => {
             const data = await response.json()
 
             if (response.ok && data.success) {
-                message.success(`学生ID ${activityId} 的角色更新成功`)
+                message.success(`活动 ${activityId} 的角色更新成功`)
             } else {
-                message.error(`学生ID ${activityId} 的角色更新失败`)
+                message.error(`活动 ${activityId} 的角色更新失败`)
             }
         } catch (error) {
             console.error('请求错误:', error)
             message.error('请求错误')
+        } finally {
+            console.log('请求结束')
         }
     }
 

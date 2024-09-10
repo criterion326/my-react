@@ -61,9 +61,11 @@ export const useAddStudent = (token, activityData, fetchActivityData) => {
                 // await fetchActivityData(id)
                 // handleClearStudents() // 清空已选择的学生
                 // console.log('data', activityData)
-                message.success('成功添加学生')
+                console.log('添加学生', data)
+                message.success('成功添加学生', data.sucessList)
+                // message.info('添加学生失败', data.failureList)
             } else {
-                message.error('添加学生失败')
+                message.error('添加学生请求失败')
             }
         } catch (error) {
             console.error('新增学生错误:', error)

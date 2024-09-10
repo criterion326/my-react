@@ -10,7 +10,7 @@ const fetchActivities = async (currentPage, pageSize, user_id, token) => {
                 },
             }
         )
-        console.log('response:', response.data)
+        // console.log('response:', response.data)
         // const filteredData = response.data.result.data.filter(
         //     activity => activity.selectPublisher === user_id
         // )

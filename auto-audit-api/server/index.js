@@ -60,17 +60,7 @@ app.post('/login', async (req, res) => {
 app.post('/updateRole', async (req, res) => {
     // const { activityId, checkName, activityStudents } = req.body
     const token = req.headers.authorization // 获取请求头中的token
-    // 打印接收到的数据
-    // logger.info('Received updateRole request', { activityId, checkName, activityStudents })
-
-    // 构建请求体
-    // const requestBody = {
-    //     activityId,
-    //     checkName,
-    //     activityStudents,
-    // }
-    logger.info('requestBody1111', req.body, token)
-    console.log('req', req.body, token)
+    logger.info('requestBody', req.body, token)
     try {
         // 向远程服务器发起POST请求
         const response = await axios.post('http://106.54.0.160:5001/api/activity/audit', req.body, {

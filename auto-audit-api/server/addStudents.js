@@ -9,7 +9,7 @@ const addStudentsBatch = async (studentsData, token) => {
             message: '活动ID或学生信息无效',
         }
     }
-    console.log('studentsData:', studentsData)
+    // console.log('studentsData:', studentsData)
     try {
         // 并发发送每个学生的请求
         const results = await Promise.all(
@@ -30,7 +30,7 @@ const addStudentsBatch = async (studentsData, token) => {
                         }
                     )
                     .then(response => {
-                        console.log(`Success for studentId: ${student.userId}`, response.data)
+                        // console.log(`Success for studentId: ${student.userId}`, response.data)
                         return {
                             userId: student.userId,
                             success: true,

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { SearchOutlined } from '@ant-design/icons'
+import * as XLSX from 'xlsx' // 引入xlsx库
 import {
     Table,
     Input,
@@ -16,6 +18,7 @@ import {
     Modal,
     Select,
     Upload,
+    Space,
 } from 'antd'
 import './AuditPage.css'
 import { useAuth } from '../AuthContext'
@@ -36,7 +39,10 @@ function AuditPage() {
     //下拉学生数据
     const handleRoleChange = useHandleRoleChange(token) // 使用自定义 Hook
     const [studentOptions, setStudentOptions] = useState([]) // 存储从后端获取的学生列表
-
+    // 新增状态来保存搜索文字和当前搜索的列
+    const [searchText, setSearchText] = useState('')
+    const [searchedColumn, setSearchedColumn] = useState('')
+    const searchInput = useRef(null)
     useEffect(() => {
         fetchStudents() // 组件加载时调用
     }, []) // 空依赖数组意味着只在组件第一次渲染时调用
@@ -104,7 +110,7 @@ function AuditPage() {
             const data = await response.json()
             // data.result = testdata
             if (data.code === 200) {
-                console.log('data', data)
+                // console.log('data', data)
                 setActivityData(data.result)
                 setEditedRoles(data.result.activityRoles) // 初始化editedRoles
                 message.success('获取活动数据成功')
@@ -135,7 +141,7 @@ function AuditPage() {
             case '未参与':
                 return '#e0e0e0' // 浅灰色
             case '参与者':
-                return '#b3d9ff' // 浅蓝色
+                return '#f3479b' // 浅红色
             case '组织者':
                 return '#ffcc99' // 浅橙色
             default:
@@ -171,7 +177,103 @@ function AuditPage() {
             message.error('获取学生数据错误')
         }
     }
+    // 导出表格数据为 Excel 文件
+    const exportToExcel = () => {
+        // 1. 将表格数据转换为适合导出的格式
+        const dataToExport = activityData.activityStudents.map(student => ({
+            学号: student.userId,
+            姓名: student.userName,
+            角色: student.role,
+        }))
 
+        // 2. 创建工作簿和工作表
+        const ws = XLSX.utils.json_to_sheet(dataToExport)
+        const wb = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(wb, ws, '学生活动数据')
+        // 3. 获取当前时间和活动ID
+        const activityId = activityData.activityId // 假设 activityId 存在
+        const currentDateTime = new Date().toLocaleString().replace(/[\/:]/g, '-') // 格式化当前时间
+
+        // 3. 导出 Excel 文件
+        const fileName = `活动ID_${activityId}_${currentDateTime}.xlsx`
+        XLSX.writeFile(wb, fileName)
+    }
+
+    // 处理搜索逻辑
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm()
+        setSearchText(selectedKeys[0])
+        setSearchedColumn(dataIndex)
+    }
+
+    // 处理搜索重置
+    const handleReset = (clearFilters, confirm) => {
+        clearFilters()
+        setSearchText('')
+        setSearchedColumn('')
+        handleSearch('', confirm, searchedColumn)
+    }
+
+    // 获取列的搜索配置
+    const getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div style={{ padding: 8 }}>
+                <Input
+                    ref={searchInput}
+                    placeholder={`搜索 ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{ marginBottom: 8, display: 'block' }}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined />}
+                        size="small"
+                        style={{ width: 90 }}
+                    >
+                        搜索
+                    </Button>
+                    <Button
+                        onClick={() => handleReset(clearFilters, confirm)}
+                        size="small"
+                        style={{ width: 90 }}
+                    >
+                        重置
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: filtered => (
+            <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) =>
+            record[dataIndex]
+                ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
+                : '',
+        render: text => text,
+        // searchedColumn === dataIndex ? (
+        //     <span style={{ backgroundColor: '#ffc069', padding: 0 }}>{text}</span>
+        // ) : (
+        //     text
+        // ),
+    })
+    // 角色统计函数
+    const getRoleCounts = () => {
+        if (!activityData || !activityData.activityStudents) return {}
+
+        const roleCounts = activityData.activityStudents.reduce(
+            (acc, student) => {
+                acc[student.role] = (acc[student.role] || 0) + 1
+                return acc
+            },
+            { 未参与: 0, 参与者: 0, 组织者: 0 }
+        )
+        return roleCounts
+    }
+    const roleCounts = getRoleCounts() // 获取角色统计数据
     const columns = [
         {
             title: '序号',
@@ -187,6 +289,7 @@ function AuditPage() {
             key: 'userId',
             align: 'center',
             width: 100, // 可以适当调整学号列宽度
+            ...getColumnSearchProps('userId'),
         },
         {
             title: '姓名',
@@ -194,9 +297,25 @@ function AuditPage() {
             key: 'userName',
             align: 'center',
             width: 120, // 可以适当调整姓名列宽度
+            ...getColumnSearchProps('userName'),
         },
         {
-            title: '当前参与角色',
+            title: (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <span style={{ textAlign: 'center' }}>当前参与角色</span>
+                    <span
+                        style={{
+                            marginLeft: '10px',
+                            fontSize: '14px',
+                            color: '#444',
+                            textAlign: 'center',
+                        }}
+                    >
+                        【 未参与: {roleCounts['未参与']} | 参与者: {roleCounts['参与者']} | 组织者:{' '}
+                        {roleCounts['组织者']}】{' '}
+                    </span>
+                </div>
+            ),
             dataIndex: 'role',
             key: 'role',
             align: 'center',
@@ -232,39 +351,20 @@ function AuditPage() {
             ),
         },
     ]
+
     return (
         <div>
-            <h2>审核页面, 正在审核的活动ID:{id}</h2>
+            {/* <h2>审核页面</h2> */}
             <div>
-                <Row gutter={[16, 16]} justify="center">
+                <Row gutter={[8, 8]} justify="center">
                     <Col span={18}>
-                        <Title level={4} className="title-left">
-                            活动信息
+                        <Title level={3} className="title-left">
+                            活动审核页面
                         </Title>
                         <Card>
-                            <Text className="ant-typography">
+                            <Title level={4} className="ant-typography">
                                 活动标题: {activityData?.activityTitle}
-                            </Text>
-                        </Card>
-                    </Col>
-                    <Col span={18}>
-                        <Title level={4} className="title-left">
-                            审核文件上传
-                        </Title>
-                        <Card>
-                            {' '}
-                            <FileUpload
-                                token={token}
-                                activityData={activityData}
-                                studentOptions={studentOptions}
-                                fetchActivityData={fetchActivityData}
-                                handleRoleChange={handleRoleChange}
-                                id={id}
-                            />
-                        </Card>
-                    </Col>
-                    <Col span={18}>
-                        <Card>
+                            </Title>
                             <Title level={4} className="title-left">
                                 角色信息
                             </Title>
@@ -287,6 +387,21 @@ function AuditPage() {
                                     </div>
                                 ))}
                             </div>
+                        </Card>
+                    </Col>
+                    <Col span={18}>
+                        <Title level={4} className="title-left">
+                            审核文件上传
+                        </Title>
+                        <Card>
+                            <FileUpload
+                                token={token}
+                                activityData={activityData}
+                                studentOptions={studentOptions}
+                                fetchActivityData={fetchActivityData}
+                                handleRoleChange={handleRoleChange}
+                                id={id}
+                            />
                         </Card>
                     </Col>
                     <Col span={18}>
@@ -338,6 +453,41 @@ function AuditPage() {
                                     onClick={() => handleAddStudents(id)}
                                 >
                                     新增学生
+                                </Button>
+                                <Button
+                                    type="primary"
+                                    style={{ marginRight: 16, marginTop: 0 }}
+                                    onClick={async () => {
+                                        await handleRoleChange(
+                                            id,
+                                            '未参与',
+                                            activityData.activityStudents
+                                        )
+                                        fetchActivityData(id)
+                                    }}
+                                >
+                                    一键全部未参与
+                                </Button>
+                                <Button
+                                    type="primary"
+                                    style={{ marginRight: 16, marginTop: 0 }}
+                                    onClick={async () => {
+                                        await handleRoleChange(
+                                            id,
+                                            '参与者',
+                                            activityData.activityStudents
+                                        )
+                                        fetchActivityData(id)
+                                    }}
+                                >
+                                    一键全部参与者
+                                </Button>
+                                <Button
+                                    type="primary"
+                                    onClick={exportToExcel}
+                                    style={{ marginRight: 16, marginTop: 0 }}
+                                >
+                                    一键导出
                                 </Button>
                             </div>
                             <div className="table-container">

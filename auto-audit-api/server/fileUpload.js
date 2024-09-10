@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 // 初始化上传
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 4096000 }, // 设置文件大小限制为 1MB
+    limits: { fileSize: 4096000 }, // 设置文件大小限制为4MB
     fileFilter: (req, file, cb) => {
         checkFileType(file, cb)
     },

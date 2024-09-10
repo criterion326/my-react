@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Spin, Button, Typography, message, Upload } from 'antd'
+import { Row, Col, Spin, Button, Typography, message, Upload, Radio, Modal } from 'antd'
 import { UploadOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useHandleRoleChange } from './HandleRoleChange'
 import { useAddStudent } from './AddStudents'
@@ -22,6 +22,7 @@ const FileUpload = ({
     const { selectedStudents, handleStudentSelect, handleClearStudents, handleAddStudents } =
         useAddStudent(token, activityData, fetchActivityData)
     // const { handleRoleChange } = useHandleRoleChange(token, fetchActivityData) // 使用自定义 Hook
+    const [matchType, setMatchType] = useState('byId') // 新增的状态，用于保存匹配类型（ID或姓名）
     const handleFileChange = info => {
         const { status } = info.file
         if (!status || status === 'done' || status === 'uploading') {
@@ -107,6 +108,7 @@ const FileUpload = ({
             message.error('OCR结果无效')
             return
         }
+        console.log('ocrResult', ocrResult)
         if (!activityData || !activityData.activityStudents) {
             message.error('活动数据未加载，无法处理OCR结果')
             return
@@ -117,35 +119,62 @@ const FileUpload = ({
             .filter(word => word.length > 0)
         // 匹配 studentOptions 中的学生
         const matchedStudentIds = []
+        //去除重复的学生id
+
         // 遍历 OCR 分词结果，使用 Fuse.js 或直接遍历来匹配 studentOptions 中的姓名
-        const fuse = new Fuse(studentOptions, {
-            keys: ['userName'], // 根据学生姓名进行匹配
-            threshold: 0.9, // 阈值
-        })
+        let fuse //
         words.forEach(word => {
-            const result = fuse.search(word) // 使用 Fuse.js 进行模糊匹配
-            if (result.length > 0) {
-                const matchedStudent = result[0].item
-                matchedStudentIds.push(matchedStudent.userId) // 将找到的学生 ID 放入数组
+            if (matchType === 'byId') {
+                // 使用正则表达式来严格匹配 ID（只匹配数字）
+                const numericWord = /^\d+$/.test(word) ? word : null // 仅处理纯数字字符串
+                if (numericWord) {
+                    const matchedStudent = activityData.activityStudents.find(
+                        student => student.userId === numericWord
+                    )
+                    if (matchedStudent) {
+                        matchedStudentIds.push(matchedStudent.userId) // 将匹配到的学生ID放入数组
+                    }
+                }
+            } else if (matchType === 'byName') {
+                // 根据姓名进行模糊匹配
+                fuse = new Fuse(activityData.activityStudents, {
+                    keys: ['userName'],
+                    threshold: 0.5, // 设置一个严格的阈值
+                })
+                const result = fuse.search(word) // 使用 Fuse.js 进行模糊匹配
+                if (result.length > 0) {
+                    const matchedStudent = result[0].item
+                    matchedStudentIds.push(matchedStudent.userId) // 将找到的学生 ID 放入数组
+                }
+            } else {
+                // 根据姓名和学号进行模糊匹配
+                fuse = new Fuse(activityData.activityStudents, {
+                    keys: ['userName', 'userId'],
+                    threshold: 0.5, // 设置一个严格的阈值
+                })
+                const result = fuse.search(word)
+                if (result.length > 0) {
+                    const student = result[0].item
+                    matchedStudentIds.push(student.userId)
+                } else {
+                    console.warn(`未找到匹配的学生姓名或学号: ${word}`)
+                }
             }
         })
-
-        if (matchedStudentIds.length === 0) {
+        const uniqueStudentIds = [...new Set(matchedStudentIds)]
+        if (uniqueStudentIds.length === 0) {
             message.warning('OCR结果中没有匹配到任何学生')
             return
         }
-        // 设置 localselectedStudents 为匹配到的学生 ID 列表
-        // setlocalSelectedStudents(matchedStudentIds)
-
         // 调用 handleAddStudents 来处理新增学生
-        await handleStudentSelect(matchedStudentIds) // 传入匹配到的学生 ID
+        await handleStudentSelect(uniqueStudentIds) // 传入匹配到的学生 ID
         await handleAddStudents(id) // 传入活动的 id
         await fetchActivityData(id) // 重新获取活动数据
-        console.log('matchedStudent', matchedStudentIds)
+
+        console.log('unique matchedStudent', uniqueStudentIds)
         console.log('fetch new local students', activityData.activityStudents)
         const studentsToUpdate = activityData.activityStudents.filter(
-            student =>
-                matchedStudentIds.includes(Number(student.userId)) && student.role != '参与者'
+            student => uniqueStudentIds.includes(String(student.userId)) && student.role != '参与者'
         )
 
         if (studentsToUpdate.length === 0) {
@@ -154,9 +183,34 @@ const FileUpload = ({
         }
         console.log('过滤的', studentsToUpdate)
         // 检查是否找到学生，并且角色不是 '参与者'
-        await handleRoleChange(id, '参与者', studentsToUpdate) // 只有在角色不是 '参与者' 时才更新角色
-        await fetchActivityData(id)
-        message.success('OCR识别成功并更新学生角色')
+        try {
+            await handleRoleChange(id, '参与者', studentsToUpdate)
+            await fetchActivityData(id)
+            message.success('OCR识别成功并更新学生角色')
+        } catch (error) {
+            console.error('身份修改失败:', error)
+
+            // 弹出确认提示框
+            Modal.confirm({
+                title: '修改身份失败',
+                content: '部分学生身份修改失败，是否重试？',
+                okText: '重试',
+                cancelText: '取消',
+                onOk: async () => {
+                    try {
+                        await handleRoleChange(id, '参与者', studentsToUpdate) // 再次尝试
+                        await fetchActivityData(id) // 更新数据
+                        message.success('学生身份修改成功')
+                    } catch (retryError) {
+                        console.error('重试失败:', retryError)
+                        message.error('重试修改身份失败')
+                    }
+                },
+                onCancel: () => {
+                    message.info('取消了重试修改身份')
+                },
+            })
+        }
     }
 
     const handleRemoveFile = () => {
@@ -228,6 +282,18 @@ const FileUpload = ({
                             >
                                 一键审核
                             </Button>
+                        </Col>
+                        {/* 匹配类型选择的Radio */}
+                        <Col style={{ marginLeft: '20px' }}>
+                            <Radio.Group
+                                onChange={e => setMatchType(e.target.value)}
+                                value={matchType}
+                                style={{ marginRight: '10px' }}
+                            >
+                                <Radio value="byId">根据学号匹配</Radio>
+                                <Radio value="byName">根据姓名匹配</Radio>
+                                <Radio value="byBoth">根据姓名或学号匹配</Radio>
+                            </Radio.Group>
                         </Col>
                     </Row>
                 )}
