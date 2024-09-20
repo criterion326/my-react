@@ -6,7 +6,7 @@ auto-audit-front/node_modules/
 auto-audit-api/server/uploads
 /.pnp
 .pnp.js
-
+auto-audit-api/server/table-ocr-txy.js
 # testing
 /coverage
 
