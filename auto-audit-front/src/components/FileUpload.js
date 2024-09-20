@@ -120,7 +120,7 @@ const FileUpload = ({
         // 匹配 studentOptions 中的学生
         const matchedStudentIds = []
         //去除重复的学生id
-
+        console.log('studentOptions', studentOptions)
         // 遍历 OCR 分词结果，使用 Fuse.js 或直接遍历来匹配 studentOptions 中的姓名
         let fuse //
         words.forEach(word => {
@@ -128,8 +128,8 @@ const FileUpload = ({
                 // 使用正则表达式来严格匹配 ID（只匹配数字）
                 const numericWord = /^\d+$/.test(word) ? word : null // 仅处理纯数字字符串
                 if (numericWord) {
-                    const matchedStudent = activityData.activityStudents.find(
-                        student => student.userId === numericWord
+                    const matchedStudent = studentOptions.find(
+                        student => String(student.userId) === numericWord
                     )
                     if (matchedStudent) {
                         matchedStudentIds.push(matchedStudent.userId) // 将匹配到的学生ID放入数组
@@ -137,7 +137,7 @@ const FileUpload = ({
                 }
             } else if (matchType === 'byName') {
                 // 根据姓名进行模糊匹配
-                fuse = new Fuse(activityData.activityStudents, {
+                fuse = new Fuse(studentOptions, {
                     keys: ['userName'],
                     threshold: 0.5, // 设置一个严格的阈值
                 })
@@ -148,7 +148,7 @@ const FileUpload = ({
                 }
             } else {
                 // 根据姓名和学号进行模糊匹配
-                fuse = new Fuse(activityData.activityStudents, {
+                fuse = new Fuse(studentOptions, {
                     keys: ['userName', 'userId'],
                     threshold: 0.5, // 设置一个严格的阈值
                 })
@@ -172,9 +172,9 @@ const FileUpload = ({
         await fetchActivityData(id) // 重新获取活动数据
 
         console.log('unique matchedStudent', uniqueStudentIds)
-        console.log('fetch new local students', activityData.activityStudents)
+        console.log('fetch activityStudents', activityData.activityStudents)
         const studentsToUpdate = activityData.activityStudents.filter(
-            student => uniqueStudentIds.includes(String(student.userId)) && student.role != '参与者'
+            student => uniqueStudentIds.includes(Number(student.userId)) && student.role != '参与者'
         )
 
         if (studentsToUpdate.length === 0) {

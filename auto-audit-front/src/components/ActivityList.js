@@ -41,7 +41,7 @@ function SortableTable({ columns, data, handleAuditClick, handlePageChange }) {
         {
             columns,
             data,
-            initialState: { pageIndex: 0, pageSize: 20 }, // 初始页码和每页条数
+            initialState: { pageIndex: 0, pageSize: 100 }, // 初始页码和每页条数
         },
         useSortBy,
         usePagination // 使用分页插件

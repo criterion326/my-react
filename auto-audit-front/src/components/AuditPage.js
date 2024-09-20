@@ -141,7 +141,7 @@ function AuditPage() {
             case '未参与':
                 return '#e0e0e0' // 浅灰色
             case '参与者':
-                return '#f3479b' // 浅红色
+                return '#34aa56' // 浅红色
             case '组织者':
                 return '#ffcc99' // 浅橙色
             default:
@@ -324,8 +324,8 @@ function AuditPage() {
                 <div
                     style={{
                         backgroundColor: getBackgroundColor(record.role),
-                        padding: '5px',
-                        borderRadius: '5px',
+                        padding: '2px',
+                        borderRadius: '4px',
                     }}
                 >
                     <Radio.Group
