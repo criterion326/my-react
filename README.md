@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+<h3 style="font-family: 'Arial', sans-serif; color: red;">介绍：党团研活动审核辅助页面</h3>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+来不及部署了hh，请自己取用体验吧
+git项目到本地后,分别开启前端和后端
+对于后端：
+```shell
+先进入目录：
+cd auto-audit-api
+先安装必要的react项目依赖，在终端中执行：
+npm i
+然后启动后端
+npm start
+一般默认3000端口
+```
+对于前端
+```shell
+先进入目录：
+cd auto-audit-front
+先安装必要的react项目依赖，在终端中执行：
+npm i
+然后启动后端
+npm start
+因为3000端口被占用，输入y确认选择另外一个端口，一般默认3001端口
+```
+然后以党团研的账号登录即可，进入 http://localhost:3001/ 这个页面，
+#### 提示
+==1、代码比较粗糙，随时保持更新，而且用为采用ocr识别，请只上传参与了活动部分的同学的图片==，比如：
+<img src='./imgs/979-1.png' style='height:400px;display:block;margin-left:auto;margin-right:auto;'>
+2、如果识别失败就多点几次**一键审核**
+3、如果提示获取数据失败，就刷新重新登录进入
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

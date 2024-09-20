@@ -3,6 +3,7 @@
 # dependencies
 auto-audit-api/node_modules/
 auto-audit-front/node_modules/
+auto-audit-api/server/uploads
 /.pnp
 .pnp.js
 

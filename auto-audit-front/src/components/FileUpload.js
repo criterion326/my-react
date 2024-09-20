@@ -120,7 +120,7 @@ const FileUpload = ({
         // 匹配 studentOptions 中的学生
         const matchedStudentIds = []
         //去除重复的学生id
-        console.log('studentOptions', studentOptions)
+        // console.log('studentOptions', studentOptions)
         // 遍历 OCR 分词结果，使用 Fuse.js 或直接遍历来匹配 studentOptions 中的姓名
         let fuse //
         words.forEach(word => {

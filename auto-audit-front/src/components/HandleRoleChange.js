@@ -15,7 +15,7 @@ export const useHandleRoleChange = token => {
             })),
         }
 
-        console.log('Request Body:', requestBody, token)
+        // console.log('Request Body:', requestBody, token)
 
         try {
             // 发起POST请求更新学生信息
