@@ -14118,3 +14118,7 @@
 2024-09-20T13:09:50.646Z [my-app] info: 申请单个活动详情 操作成功！ 
 2024-09-20T13:10:07.776Z [my-app] info: Received activities request 
 2024-09-20T13:10:07.781Z [my-app] info: Received activities request 
+2024-09-20T13:32:31.036Z [my-app] info: Received activity details request 
+2024-09-20T13:32:31.245Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T13:35:12.283Z [my-app] info: Received activities request 
+2024-09-20T13:35:12.310Z [my-app] info: Received activities request 

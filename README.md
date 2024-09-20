@@ -24,8 +24,8 @@ npm start
 ```
 然后以党团研的账号登录即可，进入 http://localhost:3001/ 这个页面，
 #### 提示
-==1、代码比较粗糙，随时保持更新，而且用为采用ocr识别，请只上传参与了活动部分的同学的图片==，比如：
+<span style="background-color:yellow;">1、代码比较粗糙，随时保持更新，而且用为采用ocr识别，请只上传参与了活动部分的同学的图片,比如</span>
 <img src='./imgs/979-1.png' style='height:400px;display:block;margin-left:auto;margin-right:auto;'>
-2、如果识别失败就多点几次**一键审核**
+2、如果识别失败就多点几次**一键审核**  
 3、如果提示获取数据失败，就刷新重新登录进入
 
