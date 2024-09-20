@@ -306,7 +306,7 @@ function AuditPage() {
                     <span
                         style={{
                             marginLeft: '10px',
-                            fontSize: '14px',
+                            fontSize: '24px',
                             color: '#444',
                             textAlign: 'center',
                         }}
@@ -490,7 +490,7 @@ function AuditPage() {
                                     一键导出
                                 </Button>
                             </div>
-                            <div className="table-container">
+                            <div>
                                 <Table
                                     className="custom-table"
                                     columns={columns}
