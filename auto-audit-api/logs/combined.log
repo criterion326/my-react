@@ -13962,3 +13962,66 @@
 2024-09-11T07:12:36.605Z [my-app] info: 申请单个活动详情 操作成功！ 
 2024-09-11T07:12:48.367Z [my-app] info: Received activity details request 
 2024-09-11T07:12:48.488Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:26:59.565Z [my-app] info: User logged in 
+2024-09-20T12:26:59.609Z [my-app] info: Received activities request 
+2024-09-20T12:27:04.634Z [my-app] info: Received activities request 
+2024-09-20T12:27:28.300Z [my-app] info: Received activity details request 
+2024-09-20T12:27:28.436Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:29:39.414Z [my-app] info: Received activities request 
+2024-09-20T12:30:41.522Z [my-app] info: Received activities request 
+2024-09-20T12:31:08.709Z [my-app] info: Received activity details request 
+2024-09-20T12:31:08.744Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:31:22.099Z [my-app] info: Received updateActivity request 
+2024-09-20T12:31:22.164Z [my-app] info: Update activity response 活动修改成功 
+2024-09-20T12:36:36.408Z [my-app] info: Received activities request 
+2024-09-20T12:36:39.182Z [my-app] info: Received activities request 
+2024-09-20T12:36:52.638Z [my-app] info: Received activity details request 
+2024-09-20T12:36:52.693Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:37:16.380Z [my-app] info: Received activity details request 
+2024-09-20T12:37:16.435Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:41:56.175Z [my-app] info: Received activities request 
+2024-09-20T12:42:03.588Z [my-app] info: Received activity details request 
+2024-09-20T12:42:03.632Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-20T12:42:07.560Z [my-app] info: Received activity details request 
+2024-09-20T12:42:07.706Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-20T12:42:08.027Z [my-app] info: Received activities request 
+2024-09-20T12:42:09.552Z [my-app] info: User logged in 
+2024-09-20T12:42:09.564Z [my-app] info: Received activities request 
+2024-09-20T12:42:43.980Z [my-app] info: Received activities request 
+2024-09-20T12:42:46.060Z [my-app] info: Received activities request 
+2024-09-20T12:42:46.064Z [my-app] info: Received activities request 
+2024-09-20T12:43:04.439Z [my-app] info: Received activity details request 
+2024-09-20T12:43:04.463Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-20T12:46:20.676Z [my-app] info: Received activities request 
+2024-09-20T12:46:20.681Z [my-app] info: Received activities request 
+2024-09-20T12:46:22.376Z [my-app] info: User logged in 
+2024-09-20T12:46:22.403Z [my-app] info: Received activities request 
+2024-09-20T12:46:22.407Z [my-app] info: Received activities request 
+2024-09-20T12:46:26.664Z [my-app] info: Received activity details request 
+2024-09-20T12:46:26.793Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:46:38.505Z [my-app] info: Received activity details request 
+2024-09-20T12:46:38.545Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:47:16.294Z [my-app] info: Received activity details request 
+2024-09-20T12:47:16.323Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:47:16.329Z [my-app] info: Received activity details request 
+2024-09-20T12:47:16.370Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:48:20.743Z [my-app] info: Received activity details request 
+2024-09-20T12:48:20.774Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:48:20.792Z [my-app] info: Received activity details request 
+2024-09-20T12:48:20.938Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:49:27.014Z [my-app] info: Received activity details request 
+2024-09-20T12:49:27.053Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:49:27.071Z [my-app] info: Received activity details request 
+2024-09-20T12:49:27.096Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:50:27.925Z [my-app] info: Received activity details request 
+2024-09-20T12:50:27.949Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:50:27.981Z [my-app] info: Received activity details request 
+2024-09-20T12:50:28.005Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:51:52.358Z [my-app] info: Received activity details request 
+2024-09-20T12:51:52.495Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:51:52.504Z [my-app] info: Received activity details request 
+2024-09-20T12:51:52.525Z [my-app] info: 申请单个活动详情 操作成功！ 
+2024-09-20T12:51:52.553Z [my-app] info: requestBody 
+2024-09-20T12:51:52.698Z [my-app] info: Role update response 审核活动成功！ 
+2024-09-20T12:51:52.703Z [my-app] info: Received activity details request 
+2024-09-20T12:51:52.725Z [my-app] info: 申请单个活动详情 操作成功！ 
