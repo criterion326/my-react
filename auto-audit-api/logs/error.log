@@ -215,3 +215,4 @@
 2024-09-20T12:42:07.706Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
 2024-09-20T12:43:04.463Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
 2024-09-20T13:00:51.155Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)
+2024-09-20T14:18:38.737Z [my-app] error: Activity details request error Request failed with status code 500 (P:\Data\react\my-react\auto-audit-api\node_modules\axios\dist\node\axios.cjs:1983:12)

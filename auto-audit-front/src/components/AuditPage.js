@@ -319,13 +319,13 @@ function AuditPage() {
             dataIndex: 'role',
             key: 'role',
             align: 'center',
-            width: 250, // 设置最后一列宽度
+            width: 300, // 设置最后一列宽度
             render: (text, record) => (
                 <div
                     style={{
                         backgroundColor: getBackgroundColor(record.role),
-                        padding: '2px',
-                        borderRadius: '4px',
+                        padding: '8px',
+                        borderRadius: '8px',
                     }}
                 >
                     <Radio.Group
@@ -343,9 +343,15 @@ function AuditPage() {
                             fetchActivityData(id)
                         }}
                     >
-                        <Radio value="未参与">未参与</Radio>
-                        <Radio value="参与者">参与者</Radio>
-                        <Radio value="组织者">组织者</Radio>
+                        <Radio value="未参与" style={{ fontSize: '24px' }}>
+                            未参与
+                        </Radio>
+                        <Radio value="参与者" style={{ fontSize: '24px' }}>
+                            参与者
+                        </Radio>
+                        <Radio value="组织者" style={{ fontSize: '24px' }}>
+                            组织者
+                        </Radio>
                     </Radio.Group>
                 </div>
             ),
